@@ -96,12 +96,12 @@ I write about engineering, machine learning, and the things I build at **[chenee
 ---
 
 ## GitHub Stats
-
+ 
 <p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=cheneeheng&show_icons=true&hide_border=true" alt="GitHub stats" height="165" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=cheneeheng&layout=compact&hide_border=true" alt="Most used languages" height="165" />
+  <img src="./github-metrics.svg" alt="GitHub metrics" />
 </p>
-
+<sub>Card is generated weekly by a GitHub Action and committed to this repo — no external rendering service to break.</sub>
+ 
 ---
-
+ 
 <sub>Always glad to talk shop or hear about an interesting problem — the links up top are the best way to reach me.</sub>
