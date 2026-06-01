@@ -1,0 +1,43 @@
+name: GitHub Metrics
+
+on:
+  # Regenerate daily so the card stays current
+  schedule:
+    - cron: "0 6 * * *"   # 06:00 UTC every day
+  # Allow manual runs from the Actions tab
+  workflow_dispatch:
+  # Regenerate on pushes to the default branch
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write   # needed so the action can commit the SVG back
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate metrics card
+        uses: lowlighter/metrics@latest
+        with:
+          # A Personal Access Token you create and store as a repo secret.
+          # See setup notes for the exact scopes.
+          token: ${{ secrets.METRICS_TOKEN }}
+
+          user: cheneeheng
+          filename: github-metrics.svg
+          template: classic
+          config_timezone: Europe/Berlin
+
+          # Top header: avatar, name, follower/star/commit counts, activity calendar
+          base: header
+
+          # Most-used languages bar (replaces the old top-langs card)
+          plugin_languages: yes
+          plugin_languages_limit: 8
+          plugin_languages_sections: most-used
+          plugin_languages_threshold: 0%
+
+          # Commit the generated SVG to the default branch
+          output_action: commit
+          committer_branch: main
