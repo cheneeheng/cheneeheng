@@ -58,8 +58,8 @@ One-line description of what it does and why it's interesting.
 
 <br>
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/cheneeheng)
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:hello@example.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ee-heng-chen-dr-ing)
+[![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:eeheng.chen@gmail.com)
 [![Blog](https://img.shields.io/badge/Blog-0A0A0A?style=flat-square&logo=githubpages&logoColor=white)](https://cheneeheng.github.io)
 
 <sub>Open to interesting problems and the right opportunity — a note on any of the above reaches me.</sub>
