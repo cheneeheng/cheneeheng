@@ -54,7 +54,7 @@ One-line description of what it does and why it's interesting.
 
 <br>
 
-<img src="./github-metrics.svg" alt="GitHub metrics" width="92%" />
+<img src="./github-metrics.svg" alt="GitHub metrics" width="60%" />
 
 <br>
 
