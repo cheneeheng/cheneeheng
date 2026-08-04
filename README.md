@@ -10,9 +10,14 @@
 class ChenEeHeng:
     """The short version. The long version is on the blog."""
 
-    works_on   = ["computer vision", "robotics", "machine learning"]
+    builds = [
+        "LLM systems that turn regulation into structured, reviewable output",
+        "agentic pipelines with a deterministic decision layer underneath",
+        "the MLOps plumbing that makes both reproducible",
+    ]
     also_builds = ["backends", "frontends", "the infrastructure in between"]
-    philosophy  = "follow a problem end to end — from the model to the metal"
+    cares_about = ["auditability", "evaluation", "knowing why the system said yes"]
+    philosophy = "follow a problem end to end — from the model to the metal"
 
     def __repr__(self) -> str:
         return "still building, still writing it all down ↓"
