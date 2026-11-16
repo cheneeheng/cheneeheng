@@ -1,7 +1,7 @@
 name: GitHub Metrics
 
 on:
-  # Regenerate daily so the card stays current
+  # Regenerate weekly so the card stays current
   schedule:
     - cron: "0 6 * * 0"   # 06:00 UTC every sunday
   # Allow manual runs from the Actions tab
@@ -22,6 +22,8 @@ jobs:
         with:
           # A Personal Access Token you create and store as a repo secret.
           # See setup notes for the exact scopes.
+          # The PAT expires: "Bad credentials" in the logs means it needs renewing
+          # (that is what failed the 2026-11-01 and 2026-11-08 runs).
           token: ${{ secrets.METRICS_TOKEN }}
 
           user: cheneeheng
@@ -32,11 +34,35 @@ jobs:
           # Top header: avatar, name, follower/star/commit counts, activity calendar
           base: header
 
-          # Most-used languages bar (replaces the old top-langs card)
+          # Isometric commit calendar for the full year, with streak stats
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+
+          # Languages: all-time most-used, plus what I've been writing lately
           plugin_languages: yes
           plugin_languages_limit: 8
-          plugin_languages_sections: most-used
+          plugin_languages_sections: most-used, recently-used
+          plugin_languages_recent_days: 30
           plugin_languages_threshold: 0%
+
+          # Coding habits: mildly interesting facts and commit-time charts
+          plugin_habits: yes
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 30
+          plugin_habits_trim: yes
+
+          # Achievements, compact so they don't dominate the card
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          plugin_achievements_threshold: B
+          plugin_achievements_secrets: yes
+
+          # Latest blog posts
+          plugin_rss: yes
+          plugin_rss_source: https://cheneeheng.github.io/rss.xml
+          plugin_rss_limit: 3
 
           # Commit the generated SVG to the default branch
           output_action: commit
