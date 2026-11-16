@@ -45,19 +45,9 @@ jobs:
           plugin_languages_sections: most-used
           plugin_languages_threshold: 0%
 
-          # Coding habits: mildly interesting facts and commit-time charts
-          plugin_habits: yes
-          plugin_habits_facts: yes
-          plugin_habits_charts: yes
-          plugin_habits_from: 200
-          plugin_habits_days: 30
-          plugin_habits_trim: yes
-
-          # Achievements, compact so they don't dominate the card
-          plugin_achievements: yes
-          plugin_achievements_display: compact
-          plugin_achievements_threshold: B
-          plugin_achievements_secrets: yes
+          # Not usable on v3.34 (both render "Unexpected error"):
+          # - habits: crashes on push events that no longer carry commit details
+          # - achievements: queries Projects (classic), which GitHub has sunset
 
           # Latest blog posts
           plugin_rss: yes
