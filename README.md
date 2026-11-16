@@ -94,7 +94,10 @@ Agents that keep working while you're away — long-running, restartable, and le
 [![Read the blog](https://img.shields.io/badge/Read_the_blog-cheneeheng.github.io-0A0A0A?style=for-the-badge&logo=githubpages&logoColor=white)](https://cheneeheng.github.io)
 
 <br>
-<img src="./github-metrics.svg" alt="GitHub metrics" width="480" />
+<img src="./metrics-languages.svg" alt="Most used languages" width="400" align="top" />
+<img src="./metrics-calendar.svg" alt="Contribution calendar" width="400" align="top" />
+<br>
+<img src="./metrics-blog.svg" alt="Latest blog posts" width="808" />
 <br>
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ee-heng-chen-dr-ing)

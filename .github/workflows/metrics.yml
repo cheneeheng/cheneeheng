@@ -13,47 +13,67 @@ on:
 permissions:
   contents: write   # needed so the action can commit the SVG back
 
+# Three separate cards so the README can lay them out: languages and calendar
+# side by side, the blog feed as a wide strip underneath.
+#
+# Every step needs a Personal Access Token stored as the METRICS_TOKEN repo secret.
+# It must be a *classic* PAT (fine-grained ones fail on GraphQL), and it expires:
+# "Bad credentials" in the logs means it needs renewing (that is what failed the
+# 2026-11-01 and 2026-11-08 runs).
+#
+# Not usable on v3.34 (both render "Unexpected error"):
+# - habits and languages' recently-used section: crash on push events that no
+#   longer carry commit details
+# - achievements: queries Projects (classic), which GitHub has sunset
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate metrics card
+      # Header (avatar, name, counts) and most-used languages bar
+      - name: Generate languages card
         uses: lowlighter/metrics@latest
         with:
-          # A Personal Access Token you create and store as a repo secret.
-          # See setup notes for the exact scopes.
-          # The PAT expires: "Bad credentials" in the logs means it needs renewing
-          # (that is what failed the 2026-11-01 and 2026-11-08 runs).
           token: ${{ secrets.METRICS_TOKEN }}
-
           user: cheneeheng
-          filename: github-metrics.svg
+          filename: metrics-languages.svg
           template: classic
           config_timezone: Europe/Berlin
-
-          # Top header: avatar, name, follower/star/commit counts, activity calendar
           base: header
-
-          # Isometric commit calendar for the full year, with streak stats
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-
-          # Most-used languages bar. The recently-used section is left out: in v3.34
-          # it crashes on push events that no longer carry commit details.
           plugin_languages: yes
           plugin_languages_limit: 8
           plugin_languages_sections: most-used
           plugin_languages_threshold: 0%
+          output_action: commit
+          committer_branch: main
 
-          # Not usable on v3.34 (both render "Unexpected error"):
-          # - habits: crashes on push events that no longer carry commit details
-          # - achievements: queries Projects (classic), which GitHub has sunset
+      # Isometric commit calendar for the full year, with streak stats
+      - name: Generate calendar card
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: cheneeheng
+          filename: metrics-calendar.svg
+          template: classic
+          config_timezone: Europe/Berlin
+          base: ""
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          output_action: commit
+          committer_branch: main
 
-          # Latest blog posts
+      # Latest blog posts, rendered double-width (960px) for the strip underneath
+      - name: Generate blog card
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: cheneeheng
+          filename: metrics-blog.svg
+          template: classic
+          config_timezone: Europe/Berlin
+          config_display: large
+          base: ""
           plugin_rss: yes
           plugin_rss_source: https://cheneeheng.github.io/rss.xml
           plugin_rss_limit: 3
-
-          # Commit the generated SVG to the default branch
           output_action: commit
           committer_branch: main
